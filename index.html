@@ -24,19 +24,13 @@
 
     <script>
       window.addEventListener('message', function(event) {
-        // 送信元がドメインAでなければ無視 (セキュリティのため必須)
         if (event.origin !== 'https://taskarai.github.io') {
           return;
         }
 
-        // 期待通りのデータ形式か確認
         if (event.data && event.data.type === 'atb_data_ready') {
           var receivedData = event.data.data;
-          
-          // データを整形して見やすくする
           var formattedData = JSON.stringify(receivedData, null, 2);
-
-          // ページ上の<div id="result">に整形したデータを表示する
           var resultDiv = document.getElementById('result');
           if (resultDiv) {
             resultDiv.textContent = formattedData;
